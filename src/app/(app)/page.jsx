@@ -23,6 +23,7 @@ const Page = () => {
   const [allposts,setAllPosts] = useState([]);
   const [allusers,setAllUsers] = useState([])
   useEffect(() => {
+    console.log(process.env.SANGAM)
   const checkAuthState = async () => {
     onAuthStateChanged(auth, async (userp) => {
       if (!userp) {
