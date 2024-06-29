@@ -117,7 +117,7 @@ const Post = ({username,profileimg,id,logedinuser,likesnum,commentsnum,caption,c
   return (
     <>
         <div className='  mx-auto m-2 p-2' >
-            <div className=' flex justify-between mx-3'>
+            <div className=' flex justify-between sm:mx-3 md:mx-3 lg:mx-3 xl:mx-3 my-2'>
                 <div className='flex'>
                     <Image src={profileimglink} className='rounded-full' alt='img' width={30} height={30} />
                     &nbsp;

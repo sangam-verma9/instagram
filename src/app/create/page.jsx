@@ -28,7 +28,7 @@ const Page = () => {
                 username:username,
                 caption:caption,
                 img:uploadimg.ref.fullPath,
-                timestamp: new Date(),
+                timestamp:new Date(),
                 likesnum:0,
                 commentsnum:0,
                 user_id: uid,
