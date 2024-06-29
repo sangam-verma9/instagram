@@ -130,11 +130,11 @@ const Post = ({username,profileimg,id,logedinuser,likesnum,commentsnum,caption,c
             <div className='flex justify-center'>
                 <Image src={imglink} alt='img' width={400} height={100} />
             </div>
-            <div className='flex justify-between p-3'>
+            <div className='flex justify-between py-1 md:p-2 sm:p-2 lg:p-2 xl:p-2  '>
                 <div className='flex'>
                     <div onClick={changelinkestate}>
                         {
-                            isliked? <FavoriteIcon className='m-1 cursor-pointer text-red-600'/>:<FavoriteBorderIcon className='m-1 cursor-pointer' />
+                            isliked? <FavoriteIcon className=' cursor-pointer text-red-600'/>:<FavoriteBorderIcon className=' cursor-pointer' />
                         }
                         
                     </div>
@@ -169,7 +169,7 @@ const Post = ({username,profileimg,id,logedinuser,likesnum,commentsnum,caption,c
                 </div>
             </div>
             
-            <div className='mx-3'>
+            <div className='mx-1 sm:mx-3 md:mx-3 lg:mx-3 xl:mx-3'>
                 <div>
                     <div className='flex '>
                         <p>{currlikesnum} likes</p>
