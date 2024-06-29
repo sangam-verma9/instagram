@@ -14,7 +14,7 @@ import {getStorage,ref,getDownloadURL} from "firebase/storage"
 
 const auth =getAuth(app);
 const storage=getStorage(app);
-const page = () => {
+const Page = () => {
   const router = useRouter()
   const [username,setUsername]=useState("username");
   const [uid,setUid]=useState("");
@@ -89,9 +89,9 @@ useEffect(() => {
               <Story allusers={allusers}/>
               <hr/>
               <div className='container mx-4 sm:mx-8 md:mx-8 lg:mx-8 xl:mx-8' style={{height:"400px", width:"auto"}}>
-                {allposts.map((post)=>{
+                {allposts.map((post,index)=>{
                     return (
-                      <Post username={post.username} logedinuser={username} profileimg={post.profileimg} likesnum={post.likesnum} commentsnum={post.commentsnum} id={post.id}
+                      <Post key={index} username={post.username} logedinuser={username} profileimg={post.profileimg} likesnum={post.likesnum} commentsnum={post.commentsnum} id={post.id}
                       caption={post.caption} comments={post.comments} img={post.img} likes={post.likes} timestamp={post.timestamp.toDate()} logedinuseruid={uid}/>
                     )
                 })}
@@ -112,4 +112,4 @@ useEffect(() => {
   )
 }
 
-export default page
+export default Page

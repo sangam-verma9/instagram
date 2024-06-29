@@ -7,7 +7,7 @@ import { getStorage, ref, uploadBytes } from 'firebase/storage';
 import { addDoc, collection, doc, getDoc} from 'firebase/firestore';
 const storage=getStorage(app);
 const auth =getAuth(app);
-const page = () => {
+const Page = () => {
     const router = useRouter();
     const [image ,setImage]=useState(null);
     const [caption, setCaption]=useState("");
@@ -94,4 +94,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

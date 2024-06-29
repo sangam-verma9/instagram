@@ -41,7 +41,7 @@ const Right = ({username,fullName,profilepic,allusers,uid}) => {
                         allusers.map((u,index)=>{
                             if(index>=5)return;
                             return (
-                                <Card username={u.username} fullname={u.fullName} profileimg={u.profileimg} />
+                                <Card key={index} username={u.username} fullname={u.fullName} profileimg={u.profileimg} />
                             )
                         })
                     }

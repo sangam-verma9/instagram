@@ -9,7 +9,7 @@ const Story = ({allusers}) => {
                 {
                   allusers.map((user,id)=>{
                     return(
-                      <Card id={id} username={user.username} profileimg={user.profileimg}/>
+                      <Card key={id} username={user.username} profileimg={user.profileimg}/>
                     )
                   })
                 }

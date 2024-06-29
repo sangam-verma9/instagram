@@ -17,7 +17,7 @@ import {getAuth,onAuthStateChanged} from "firebase/auth";
 import {getStorage,ref,uploadBytes,getDownloadURL} from "firebase/storage"
 const storage=getStorage(app);
 const auth =getAuth(app);
-const page = () => {
+const Page = () => {
   const params = useParams();
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
@@ -308,9 +308,9 @@ const page = () => {
                     <div className='p-2 sm:p-5 md:p-5 lg:p-5 xl:p-8'>
                         <div className='grid gap-1 grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 '>
                             {
-                              allposts.map((p)=>{
+                              allposts.map((p ,index)=>{
                                 return(
-                                  <Post commentsnum={p.commentsnum} likesnum={p.likesnum} img={p.img}/>
+                                  <Post key={index} commentsnum={p.commentsnum} likesnum={p.likesnum} img={p.img}/>
                                 )
                               })
                             }
@@ -334,4 +334,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

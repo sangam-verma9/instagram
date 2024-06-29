@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { useRouter} from 'next/navigation'
 import {getAuth, signInWithEmailAndPassword,onAuthStateChanged} from "firebase/auth";
 const auth =getAuth(app);
-const page = () => {
+const Page = () => {
     const router = useRouter()
     const [email,setEmail]=useState("");
     const [loding,setLoding] = useState(false)
@@ -91,4 +91,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
