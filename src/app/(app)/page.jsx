@@ -11,12 +11,14 @@ import { collection, doc, getDoc, getDocs  } from "firebase/firestore";
 import { useRouter} from 'next/navigation'
 import {getAuth,onAuthStateChanged} from "firebase/auth";
 import {getStorage,ref,getDownloadURL} from "firebase/storage"
+import Loading from '@/components/loading/Loading'
 
 const auth =getAuth(app);
 const storage=getStorage(app);
 const Page = () => {
   const router = useRouter()
   const [username,setUsername]=useState("username");
+  const [loading, setLoading] = useState(false);
   const [uid,setUid]=useState("");
   const [profileimgurl, setProfileimgurl] = useState("/userprofile.png")
   const [fullName,setFullname]=useState("fullname");
@@ -25,6 +27,7 @@ const Page = () => {
   useEffect(() => {
     console.log(process.env.SANGAM)
   const checkAuthState = async () => {
+    setLoading(true)
     onAuthStateChanged(auth, async (userp) => {
       if (!userp) {
         router.push("/login");
@@ -45,6 +48,7 @@ const Page = () => {
         setUsername(data.username);
         setFullname(data.fullName);
       }
+      setLoading(false)
     });
   };
 
@@ -53,6 +57,7 @@ const Page = () => {
 
 useEffect(() => {
     const fetchPosts = async () => {
+      setLoading(true);
       const querySnapshot = await getDocs(collection(db, "posts"));
       const posts = [];
       querySnapshot.forEach((doc) => {
@@ -61,11 +66,13 @@ useEffect(() => {
         posts.push(postData);
       });
       setAllPosts(posts);
+      setLoading(false);
     };
 
     fetchPosts();
   }, [setAllPosts]);
   useEffect(() => {
+    setLoading(true);
     const fetchusers = async () => {
       const querySnapshot = await getDocs(collection(db, "users"));
       const allsuser = [];
@@ -75,6 +82,7 @@ useEffect(() => {
         allsuser.push(postData);
       });
       setAllUsers(allsuser);
+      setLoading(false);
     };
 
     fetchusers();
@@ -87,7 +95,12 @@ useEffect(() => {
               <Left username={username} profilepic={profileimgurl}/>
             </div>
             <div className=" col-span-2 p-3 h-screen overflow-auto no-scrollbar box2">
-              <Story allusers={allusers}/>
+              {
+                loading ?
+                  <Loading/>
+                :
+                <div>
+                  <Story allusers={allusers}/>
               <hr/>
               <div className='container mx-4 sm:mx-8 md:mx-8 lg:mx-8 xl:mx-8' style={{height:"400px", width:"auto"}}>
                 {allposts.map((post,index)=>{
@@ -96,7 +109,9 @@ useEffect(() => {
                       caption={post.caption} comments={post.comments} img={post.img} likes={post.likes} timestamp={post.timestamp.toDate()} logedinuseruid={uid}/>
                     )
                 })}
-              </div> 
+              </div>
+                </div>
+              } 
             </div>
             <div className=" col-span-1 h-screen box3 hidden sm:block md:block lg:block">
               <Right username={username} fullName={fullName} profilepic={profileimgurl} allusers={allusers} uid={uid}/>
